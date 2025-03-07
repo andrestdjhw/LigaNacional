@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import * as glob from 'glob';
 import htmlPurge from 'vite-plugin-purgecss';
 import handlebars from 'vite-plugin-handlebars';
+import { getPageContext } from "./data";
 
 const obtenerEntradasHTML = ()=>{
     return Object.fromEntries(
@@ -32,9 +33,7 @@ export default defineConfig({
     plugins: [
         handlebars({
             partialDirectory: resolve(__dirname, 'partials'), 
-            context: (pagePath)=>{
-                return{};
-            }
+            context: getPageContext
         }),
         htmlPurge({})
     ]
